@@ -5,7 +5,7 @@ Bunch of tutorials to get started with Spray.io and some common features and imp
 
 Following are the lessons that currently in the code:
  
-Lesson 1 - Basic setup - installation, g8, project folder setup, multiple projects
+Lesson 1 - Basic setup - installation, project folder setup
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-web-api-basic-setup.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-web-api-basic-setup.html</a>
 <br>Lesson 2 - Controllers, actions, multiple controllers
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-service-controller-actions.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-service-controller-actions.html</a>
