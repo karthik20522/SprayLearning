@@ -1,4 +1,4 @@
-SprayLearning
+Guide to learning Spray.io web framework
 =============
 
 Bunch of tutorials to get started with Spray.io and some common features and implementations used in the development of web service.
