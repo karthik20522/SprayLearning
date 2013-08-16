@@ -11,4 +11,15 @@ Lesson 1 - Basic setup - installation, project folder setup
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-service-controller-actions.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-service-controller-actions.html</a>
 <br>Lesson 3 - json response, serialization, deserialization
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-service-json-serialization.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-service-json-serialization.html</a>
-
+<br><br>
+Pending Lessons:
+<br>
+Lesson 4 - mongodb database<br>
+Lesson 5 - authentication, directives<br>
+Lesson 6 - versioning API<br>
+Lesson 7 - logging, remote ip address<br>
+Lesson 8 - cookies, cross domain requests, zipping, config file reading, handling timeouts, caching<br>
+Lesson 9 - http error codes<br>
+Lesson 10 - swagger UI<br>
+Lesson 11 - http dispatch<br>
+Lesson 12 - akka<br>
