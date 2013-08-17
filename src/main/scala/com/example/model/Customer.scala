@@ -2,7 +2,7 @@ package com.example.model
 
 case class Customer(firstName: String,
   lastName: String,
-  id: Option[String] = None,
+  _id: Option[String] = None,
   phoneNumber: Option[String] = None,
   address: Option[String] = None,
   city: Option[String] = Some("New York"),

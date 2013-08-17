@@ -1,4 +1,4 @@
-package com.example
+/*package com.example
 
 import org.specs2.mutable.Specification
 import spray.testkit.Specs2RouteTest
@@ -29,4 +29,4 @@ class MyServiceSpec extends Specification with Specs2RouteTest with MyService {
       }
     }
   }
-}
+}*/

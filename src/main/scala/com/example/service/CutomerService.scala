@@ -12,6 +12,7 @@ import org.json4s.Formats
 import org.json4s.DefaultFormats
 import com.example.model.Customer
 import org.json4s.JsonAST.JObject
+import com.example.dal.CustomerDal
 
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
@@ -48,8 +49,9 @@ trait CustomerService extends HttpService with Json4sSupport {
         entity(as[JObject]) { customerObj =>
           complete {
             val customer = customerObj.extract[Customer]
-            //insert customer information into a DB and return back customer obj
-            customer
+            val customerDal = new CustomerDal
+            val id = customerDal.saveCustomer(customer)
+            id.toString()
           }
         }
       }
@@ -58,7 +60,8 @@ trait CustomerService extends HttpService with Json4sSupport {
         get {
           complete {
             //get customer from db using customerId as Key
-            val customer = Customer(id = Some(customerId), firstName = "Karthik", lastName = "Srinivasan")
+            val customerDal = new CustomerDal
+            val customer = customerDal.findCustomer(customerId)
             customer
           }
         }
