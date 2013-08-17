@@ -13,10 +13,12 @@ import org.json4s.DefaultFormats
 import com.example.model.Customer
 import org.json4s.JsonAST.JObject
 import com.example.dal.CustomerDal
+import scala.concurrent.ExecutionContext.Implicits.global
 
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
 class CustomerServiceActor extends Actor with CustomerService with AjaxService {
+
   implicit def json4sFormats: Formats = DefaultFormats
   // the HttpService trait defines only one abstract member, which
   // connects the services environment to the enclosing actor or test
@@ -41,28 +43,34 @@ trait AjaxService extends HttpService {
 }
 
 // this trait defines our service behavior independently from the service actor
-trait CustomerService extends HttpService with Json4sSupport {
+trait CustomerService extends HttpService with Json4sSupport with UserAuthentication {
 
   val customerRoutes =
     path("addCustomer") {
       post {
-        entity(as[JObject]) { customerObj =>
-          complete {
-            val customer = customerObj.extract[Customer]
-            val customerDal = new CustomerDal
-            val id = customerDal.saveCustomer(customer)
-            id.toString()
+        authenticate(authenticateUser) { user =>
+          entity(as[JObject]) { customerObj =>
+            complete {
+              val customer = customerObj.extract[Customer]
+              val customerDal = new CustomerDal
+              val id = customerDal.saveCustomer(customer)
+              id.toString()
+            }
           }
         }
       }
     } ~
       path("getCustomer" / Segment) { customerId =>
         get {
-          complete {
-            //get customer from db using customerId as Key
-            val customerDal = new CustomerDal
-            val customer = customerDal.findCustomer(customerId)
-            customer
+          authenticate(authenticateUser) { user =>
+            {
+              complete {
+                //get customer from db using customerId as Key
+                val customerDal = new CustomerDal
+                val customer = customerDal.findCustomer(customerId)
+                customer
+              }
+            }
           }
         }
       }
