@@ -30,6 +30,17 @@ class CustomerServiceActor extends Actor with CustomerService with AjaxService {
   def receive = runRoute(customerRoutes ~ ajaxRoutes)
 }
 
+trait VersionDirectives {
+  def versioning: Directive[String :: HNil] =
+    extract { ctx =>
+      val header = ctx.request.headers.find(_.name == "X-API-Version")
+      header match {
+        case Some(head) => head.value
+        case _ => "1" //default to 1
+      }
+    }
+}
+
 trait AjaxService extends HttpService {
   val ajaxRoutes =
     path("search" / Segment) { query =>
@@ -45,6 +56,16 @@ trait AjaxService extends HttpService {
 // this trait defines our service behavior independently from the service actor
 trait CustomerService extends HttpService with Json4sSupport with UserAuthentication {
 
+  val Version = PathMatcher("""v([0-9]+)""".r)
+    .flatMap {
+      case vString :: HNil => {
+        try Some(Integer.parseInt(vString) :: HNil)
+        catch {
+          case _: NumberFormatException => Some(1 :: HNil) //default to version 1
+        }
+      }
+    }
+    
   val customerRoutes =
     path("addCustomer") {
       post {
