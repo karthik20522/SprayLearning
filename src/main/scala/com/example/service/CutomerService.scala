@@ -30,6 +30,7 @@ class CustomerServiceActor extends Actor with CustomerService with AjaxService {
   def receive = runRoute(customerRoutes ~ ajaxRoutes)
 }
 
+//http://kufli.blogspot.com/2013/08/sprayio-rest-service-api-versioning.html
 trait VersionDirectives {
   def versioning: Directive[String :: HNil] =
     extract { ctx =>
@@ -56,6 +57,7 @@ trait AjaxService extends HttpService {
 // this trait defines our service behavior independently from the service actor
 trait CustomerService extends HttpService with Json4sSupport with UserAuthentication {
 
+//http://kufli.blogspot.com/2013/08/sprayio-rest-service-api-versioning.html
   val Version = PathMatcher("""v([0-9]+)""".r)
     .flatMap {
       case vString :: HNil => {
