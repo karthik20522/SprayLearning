@@ -22,7 +22,7 @@ Lesson 1 - Basic setup - installation, project folder setup
 <br>
 <b>Pending Lessons</b>:
 <br>
-Lesson 8 - cookies, cross domain requests, zipping, config file reading, handling timeouts, caching<br>
+Lesson 8 - cookies, cross domain requests, zipping, config file reading, caching<br>
 Lesson 9 - http error codes<br>
 Lesson 10 - swagger UI<br>
 Lesson 11 - http dispatch<br>
