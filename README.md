@@ -17,10 +17,11 @@ Lesson 1 - Basic setup - installation, project folder setup
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-service-authentication.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-service-authentication.html</a>
 <br>Lesson 6 - versioning API
 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-service-api-versioning.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-service-api-versioning.html</a>
+<br>Lesson 7 - Exception, Rejection and Timeout Handling
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://kufli.blogspot.com/2013/08/sprayio-rest-service-exception.html'>http://kufli.blogspot.com/2013/08/sprayio-rest-service-exception.html</a>
 <br>
 <b>Pending Lessons</b>:
 <br>
-Lesson 7 - Exception and Rejection Handling<br>
 Lesson 8 - cookies, cross domain requests, zipping, config file reading, handling timeouts, caching<br>
 Lesson 9 - http error codes<br>
 Lesson 10 - swagger UI<br>
