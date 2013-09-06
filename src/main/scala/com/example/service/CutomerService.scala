@@ -17,6 +17,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import shapeless._
 import spray.routing.directives.BasicDirectives._
 import spray.util.LoggingContext
+import org.json4s.`package`.MappingException
+
+case class ReponseError(errorCode: String, errorMessage: String) {}
 
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
@@ -40,13 +43,19 @@ class CustomerServiceActor extends Actor with CustomerService with AjaxService w
 
   implicit def myExceptionHandler(implicit log: LoggingContext) =
     ExceptionHandler.apply {
+      case m: MappingException => {
+        respondWithMediaType(`application/json`) {
+          val errorMsg = ReponseError("MalformedBody", m.getMessage)
+          ctx => ctx.complete(415, errorMsg)
+        }
+      }
       case e: SomeCustomException => ctx => {
-        log.debug("%s %n%s %n%s".format(e.getMessage, e.getStackTraceString, e.getCause))
-        ctx.complete(404, e.getMessage)
+        val errorMsg = ReponseError("BadRequest", e.getMessage)
+        ctx.complete(400, errorMsg)
       }
       case e: Exception => ctx => {
-        log.debug("%s %n%s %n%s".format(e.getMessage, e.getStackTraceString, e.getCause))
-        ctx.complete(500, e.getMessage)
+        val errorMsg = ReponseError("InternalServerError", e.getMessage)
+        ctx.complete(500, errorMsg)
       }
     }
 }
